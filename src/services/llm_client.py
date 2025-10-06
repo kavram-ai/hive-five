@@ -29,7 +29,7 @@ class LLMResponse(BaseModel):
     """Response from LLM"""
     content: str
     finish_reason: str
-    usage: Dict[str, int]
+    usage: Dict[str, Any]  # Changed from Dict[str, int] to support nested structures
     latency_ms: float
 
 
@@ -178,7 +178,9 @@ class GLMClient:
 
         headers = {
             "Authorization": f"Bearer {self.api_key}",
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "HTTP-Referer": "https://github.com/kavram-ai/hive-five",  # Required by OpenRouter
+            "X-Title": "Hive Five Multi-Agent System"  # Optional but recommended
         }
 
         # Make request
