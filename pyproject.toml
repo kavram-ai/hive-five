@@ -1,0 +1,50 @@
+[tool.black]
+line-length = 100
+target-version = ['py310']
+include = '\.pyi?$'
+
+[tool.isort]
+profile = "black"
+line_length = 100
+multi_line_output = 3
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = false
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
+python_classes = "Test*"
+python_functions = "test_*"
+asyncio_mode = "auto"
+addopts = "-v --cov=src --cov-report=html --cov-report=term"
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hive-five"
+version = "0.1.0"
+description = "Big Five Multi-Agent System with personality-driven AI interactions"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "aiohttp>=3.9.1",
+    "confluent-kafka>=2.3.0",
+    "pydantic>=2.5.3",
+    "pydantic-settings>=2.1.0",
+    "jinja2>=3.1.2",
+    "sqlalchemy>=2.0.23",
+    "psycopg2-binary>=2.9.9",
+    "redis>=5.0.1",
+    "fastapi>=0.109.0",
+    "uvicorn[standard]>=0.27.0",
+    "python-dotenv>=1.0.0",
+    "pyyaml>=6.0.1",
+    "python-dateutil>=2.8.2",
+]
